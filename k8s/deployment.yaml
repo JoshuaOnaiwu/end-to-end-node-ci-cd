@@ -28,13 +28,14 @@ spec:
                       operator: In
                       values:
                         - node-app
-                topologyKey: "kubernetes.io/hostname"  topologyKey: "kubernetes.io/hostname"
+                topologyKey: "kubernetes.io/hostname"
 
       containers:
         - name: node-app
           image: 808850079759.dkr.ecr.us-east-1.amazonaws.com/node-app-ci-cd:v1.0.0
           ports:
             - containerPort: 3000
+
           resources:
             requests:
               cpu: "100m"
@@ -42,12 +43,14 @@ spec:
             limits:
               cpu: "250m"
               memory: "256Mi"
+
           readinessProbe:
             httpGet:
               path: /
               port: 3000
             initialDelaySeconds: 5
             periodSeconds: 5
+
           livenessProbe:
             httpGet:
               path: /
